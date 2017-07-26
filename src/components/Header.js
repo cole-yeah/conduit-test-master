@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 const LoginView = () => {
     return (
-        <ul className='col-md-4'>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/login'>Sign in</Link></li>
-            <li><Link to='/register'>Sign up</Link></li>
+        <ul className='nav navbar-nav pull-xs-right'>
+            <li className='nav-item'><Link className='nav-link' to='/'>Home</Link></li>
+            <li className='nav-item'><Link className='nav-link' to='/login'>Sign in</Link></li>
+            <li className='nav-item'><Link className='nav-link' to='/register'>Sign up</Link></li>
         </ul>
     )
 } 
@@ -14,9 +14,11 @@ const LoginView = () => {
 class Header extends Component {
     render() {
         return (
-            <nav className='row'>
-                <h2 className='col-md-8'>Conduit</h2>
-                <LoginView/>
+            <nav className='navbar navbar-light'>
+                <div className='container'>
+                    <Link to='/' className='navbar-brand'>Conduit</Link>
+                    <LoginView/>
+                </div>
             </nav>
         )
     }
