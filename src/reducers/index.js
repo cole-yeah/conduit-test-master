@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import article from './article'
 
 const rootReducer = combineReducers({
-    artilce
+    article
 })
 
 export default rootReducer

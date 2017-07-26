@@ -1,13 +1,29 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
-class App extends Component {
-    render() {
-        return (
-            <div>
-                <h2>create-react-app</h2>
-            </div>
-        )
-    }
-}
+import Header from '../components/Header'
+import Login from '../components/Login'
+import Register from '../components/Register'
 
-export default App
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+)
+
+
+const BasicExample = () => (
+  <BrowserRouter>
+    <div>
+
+      <Header/>
+
+      <hr/>
+
+      <Route exact path="/" component={Home}/>
+      <Route path="/login" component={Login}/>
+      <Route path="/register" component={Register}/>
+    </div>
+  </BrowserRouter>
+)
+export default BasicExample
