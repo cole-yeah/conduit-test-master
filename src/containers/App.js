@@ -4,12 +4,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 import Header from '../components/common/Header'
 import Login from '../components/Login'
 import Register from '../components/Register'
-
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-)
+import Home from '../components/home/Home'
 
 
 const BasicExample = () => (
