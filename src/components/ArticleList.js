@@ -1,10 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import ArticlePreview from './ArticlePreview'
 
 const ArticleList = props => {
     return (
-        <ArticlePreview/>
+        <div>
+            {
+                props.articles?props.articles.articles.map((article, i) => {
+                    return <ArticlePreview key={i} article={article}/>
+                }):null
+            }
+        </div>
     )
 }
 

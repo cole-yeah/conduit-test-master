@@ -1,5 +1,6 @@
 import React from 'react'
-// import { connect } from 'react-redux'
+
+import ArticleList from '../ArticleList'
 
 const GlobalFeedTab = () => {
     return (
@@ -9,7 +10,7 @@ const GlobalFeedTab = () => {
     )
 }
 
-const MainView = () => {
+const MainView = props => {
     return (
         <div className='col-md-9'>
             <div className='feed-toggle'>
@@ -17,6 +18,7 @@ const MainView = () => {
                     <GlobalFeedTab/>
                 </ul>
             </div>
+            <ArticleList articles={props.article}/>
         </div>
     )
 }

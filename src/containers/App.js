@@ -5,7 +5,8 @@ import Header from '../components/common/Header'
 import Login from '../components/Login'
 import Register from '../components/Register'
 import Home from '../components/home/Home'
-
+import Profile from '../components/Profile'
+import Article from '../components/article'
 
 const BasicExample = () => (
     <BrowserRouter>
@@ -15,6 +16,8 @@ const BasicExample = () => (
                 <Route exact path="/" component={Home}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
+                <Route path='/article/:id' component={Article} />
+                <Route path='/@:username' component={Profile}/>
             </div>
         </div>
     </BrowserRouter>
