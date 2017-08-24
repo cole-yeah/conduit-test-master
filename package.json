@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.4",
+    "marked": "^0.3.6",
     "material-ui": "^0.18.7",
     "normalizr": "^3.2.3",
     "react": "^15.6.1",

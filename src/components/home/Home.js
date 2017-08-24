@@ -15,7 +15,7 @@ const Banner = () => (
 )
 
 const mapStateToProps = state => ({
-    article: state.article
+    articles: state.home
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -35,7 +35,7 @@ class Home extends Component {
                 <Banner/>
                 <div className='container page'>
                     <div className='row'>
-                        <MainView article={this.props.article.datas}/>
+                        <MainView article={this.props.articles.datas}/>
                         <div className='col-md-3'>
                             <div className='sidebar'>
                                 <p>Popular Tags</p>

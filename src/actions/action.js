@@ -16,7 +16,7 @@ const tokenPlugin = req => {
 
 const request = {
     get: url => 
-        superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody)
+        superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody),
 }
 
 const limit = (count, p) => `limit=${count}&offset=${p?p*count:0}`
@@ -24,6 +24,9 @@ const limit = (count, p) => `limit=${count}&offset=${p?p*count:0}`
 const Articles = {
     all: page =>
         request.get(`articles?${limit(10, page)}`),
+    get: id => 
+        request.get(`articles/${id}`),
+    
 }
 
 export default {

@@ -1,4 +1,5 @@
 const promiseMiddleware = store => next => action => {
+    console.log('action....', action)
     if(isPromise(action)) {
         action.payload.then(
             res => {
