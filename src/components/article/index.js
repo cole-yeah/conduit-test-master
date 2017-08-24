@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import marked from 'marked'
 
 import { ARTICLE_PAGE_LOADED } from '../../constants/actionTypes'
+import CommentList from './CommentList'
 import action from '../../actions/action' 
 
 const mapStateToProps = state => ({
-    article: state.article
+    article: state.article,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -19,11 +20,12 @@ const Author = props => {
         const article = props.article.article
         return (
             <div className='article-meta'>
-                <Link to={`@${article.author.username}`}>
+                <Link to={`/@${article.author.username}`}>
+                    {/**路由这里的前面要加/这个斜杠，不然跳转的还是在article的基础上，加上斜杠则是在一开始上*/}
                     <img src={article.author.image} alt={article.author.username}/>
                 </Link>
                 <div className='info'>
-                    <Link to={`@${article.author.username}`} className='author'>
+                    <Link to={`/@${article.author.username}`} className='author'>
                         {article.author.username}
                     </Link>
                     <span className='date'>
@@ -39,7 +41,10 @@ const Author = props => {
 
 class Article extends Component {
     componentWillMount() {
-        this.props.loadArticle(action.Articles.get(this.props.match.params.id))
+        this.props.loadArticle(Promise.all([
+            action.Articles.get(this.props.match.params.id),
+            action.Comments.get(this.props.match.params.id)
+            ]))
     }
     render() {
         if(!this.props.article.article) {
@@ -59,8 +64,19 @@ class Article extends Component {
                     <div className='row article-content'>
                         <div className='col-xs-12'>
                             <div dangerouslySetInnerHTML={markup} />
+                            <ul className='tag-list'>
+                                {
+                                    article.article.tagList.map((tag, i) => {
+                                        return (
+                                            <li className='tag-default tag-pill tag-outline' key={i}>{tag}</li>
+                                        )
+                                    })
+                                }
+                            </ul>
                         </div>
                     </div>
+                    <hr/>
+                    <CommentList comments={article.comments}/>
                 </div>
             </div>
         )

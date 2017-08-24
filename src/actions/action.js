@@ -29,6 +29,12 @@ const Articles = {
     
 }
 
+const Comments = {
+    get: id => 
+        request.get(`articles/${id}/comments`),
+}
+
 export default {
-    Articles
+    Articles,
+    Comments
 }
