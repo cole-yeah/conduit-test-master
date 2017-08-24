@@ -34,7 +34,13 @@ const Comments = {
         request.get(`articles/${id}/comments`),
 }
 
+const Profile = {
+    get: username => 
+        request.get(`profiles/${username}`)
+}
+
 export default {
     Articles,
-    Comments
+    Comments,
+    Profile
 }
