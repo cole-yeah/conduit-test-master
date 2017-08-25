@@ -4,8 +4,8 @@ const ListPagination = props => {
     if(!props.count) {
         return null
     }
-    const count = props.count/10
-    if(count < 10) {
+    const count = Math.ceil(props.count/10)
+    if(count < 1) {
         return null
     }
     const countArray = []

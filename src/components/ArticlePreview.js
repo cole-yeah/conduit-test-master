@@ -27,6 +27,15 @@ const ArticlePreview = props => {
                 <h1>{article.title}</h1>
                 <p>{article.description}</p>
                 <span>Read more...</span>
+                <ul className='tag-list'>
+                    {
+                        article.tagList.length?article.tagList.map((tag, i) => {
+                            return (
+                                <li key={i} className='tag-default tag-pill tag-outline'>{tag}</li>
+                            )
+                        }):null
+                    }
+                </ul>
             </Link>
         </div>
     )

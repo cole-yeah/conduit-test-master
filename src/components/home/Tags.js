@@ -9,7 +9,7 @@ const Tags = props => {
             {
                 props.tags.tags.map((tag, i) => {
                     return (
-                        <a className='tag-default tag-pill'>{tag}</a>
+                        <a key={i} className='tag-default tag-pill' onClick={() => props._setTag(tag)}>{tag}</a>
                     )
                 })
             }
