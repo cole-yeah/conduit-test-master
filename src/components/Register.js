@@ -1,8 +1,28 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
+import action from '../actions/action'
+import { CHANGE_USERNAME, CHANGE_PASSWORD, CHANGE_EMAIL, REGISTER_SUCCESS, REGISTER_FAIL } from '../constants/actionTypes'
+
+const mapStateToProps = state => ({
+    ...state.register
+})
+
+const mapDispatchToProps = dispatch => ({
+    onChangeUsername: (e) => 
+        dispatch({type: CHANGE_USERNAME, value: e.target.value}),
+    onChangePassword: (e) =>
+        dispatch({type: CHANGE_PASSWORD,value: e.target.value}),
+    onChangeEmail: (e) =>
+        dispatch({type: CHANGE_EMAIL, value: e.target.value}),
+    register: (payload) =>
+        dispatch({type: [REGISTER_SUCCESS, REGISTER_FAIL], payload})
+})
 
 class Register extends Component {
     render() {
+        const {username, password, email, onChangeEmail, onChangeUsername, onChangePassword, register} = this.props
         return (
             <div className='container page'>
                 <div className='row'>
@@ -14,17 +34,17 @@ class Register extends Component {
                         <form>
                             <fieldset>
                                 <fieldset className='form-group'>
-                                    <input type='text' className='form-control from-control-lg' placeholder='Username' />
+                                    <input onChange={onChangeUsername} value={username} type='text' className='form-control from-control-lg' placeholder='Username' />
                                 </fieldset>
                                 <fieldset className='form-group'>
-                                    <input type='email' className='form-control from-control-lg' placeholder='Email' />
+                                    <input onChange={onChangeEmail} value={email} type='email' className='form-control from-control-lg' placeholder='Email' />
                                 </fieldset>
                                 <fieldset className='form-group'>
-                                    <input type='password' className='form-control from-control-lg' placeholder='Password' />
+                                    <input onChange={onChangePassword} value={password} type='password' className='form-control from-control-lg' placeholder='Password' />
                                 </fieldset>
-                                <button className='btn btn-lg btn-primary pull-xs-right' type='submit'>Sign In</button>
                             </fieldset>
                         </form>
+                        <button onClick={() => register(action.Profile.register(username, email, password))} className='btn btn-lg btn-primary pull-xs-right' type='submit'>Sign In</button>
                     </div>
                 </div>
             </div>
@@ -32,4 +52,4 @@ class Register extends Component {
     }
 }
 
-export default Register
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

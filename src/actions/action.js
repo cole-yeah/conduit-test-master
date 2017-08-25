@@ -17,6 +17,12 @@ const tokenPlugin = req => {
 const request = {
     get: url => 
         superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody),
+    post: (url, body) =>
+        superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
+    put: (url, body) => 
+        superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
+    del: url => 
+        superagent.del(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody)
 }
 
 const limit = (count, p) => `limit=${count}&offset=${p?p*count:0}`
@@ -45,7 +51,9 @@ const Comments = {
 
 const Profile = {
     get: username => 
-        request.get(`profiles/${username}`)
+        request.get(`profiles/${username}`),
+    register: (username, email, password) =>
+        request.post('/users', { user: { username, email, password } }),
 }
 
 export default {
