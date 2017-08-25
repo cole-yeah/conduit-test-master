@@ -26,6 +26,8 @@ const Articles = {
         request.get(`articles?${limit(10, page)}`),
     get: id => 
         request.get(`articles/${id}`),
+    byAuthor: (username, page) => 
+        request.get(`articles?author=${username}&${limit(5, page)}`)
     
 }
 

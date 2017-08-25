@@ -6,7 +6,7 @@ const ArticleList = props => {
     return (
         <div>
             {
-                props.articles?props.articles.articles.map((article, i) => {
+                props.articles?props.articles.map((article, i) => {
                     return <ArticlePreview key={i} article={article}/>
                 }):null
             }

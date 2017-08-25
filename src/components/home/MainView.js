@@ -11,6 +11,9 @@ const GlobalFeedTab = () => {
 }
 
 const MainView = props => {
+    if(!props.article) {
+        return null
+    }
     return (
         <div className='col-md-9'>
             <div className='feed-toggle'>
@@ -18,7 +21,7 @@ const MainView = props => {
                     <GlobalFeedTab/>
                 </ul>
             </div>
-            <ArticleList articles={props.article}/>
+            <ArticleList articles={props.article.articles}/>
         </div>
     )
 }
