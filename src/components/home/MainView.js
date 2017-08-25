@@ -21,7 +21,7 @@ const MainView = props => {
                     <GlobalFeedTab/>
                 </ul>
             </div>
-            <ArticleList articles={props.article.articles}/>
+            <ArticleList page={props.page} articles={props.article.articles} setPage={props.setPage} articlesCount={props.article.articlesCount}/>
         </div>
     )
 }

@@ -56,7 +56,7 @@ class Profile extends Component{
                             <div className='articles-toggle'>
                                 <ul className='nav nav-pills outline-active'></ul>
                             </div>
-                            <ArticleList articles={this.props.articles}/>
+                            <ArticleList articles={this.props.articles}  articlesCount={this.props.articlesCount}/>
                         </div>
                     </div>
                 </div>

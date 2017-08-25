@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import MainView from './MainView'
 import action from '../../actions/action'
 import { HOME_PAGE_LOADED } from '../../constants/actionTypes'
-
+let self
 const Banner = () => (
     <div className='banner'>
         <div className='container'>
@@ -15,18 +15,23 @@ const Banner = () => (
 )
 
 const mapStateToProps = state => ({
-    articles: state.home
+    ...state.home
 })
 
 const mapDispatchToProps = dispatch => ({
-    onLoad: (payload) => 
-        dispatch({type: HOME_PAGE_LOADED, payload})
+    onLoad: (payload, page) => 
+        dispatch({type: HOME_PAGE_LOADED, payload, page})
 })
 
 class Home extends Component {
 
     componentWillMount() {
-        this.props.onLoad(action.Articles.all('10'))
+        self=this
+        this.props.onLoad(action.Articles.all(0), 1)
+    }
+
+    setPage(page) {
+        self.props.onLoad(action.Articles.all(page-1), page)
     }
 
     render() {
@@ -35,7 +40,7 @@ class Home extends Component {
                 <Banner/>
                 <div className='container page'>
                     <div className='row'>
-                        <MainView article={this.props.articles.datas}/>
+                        <MainView article={this.props.datas} page={this.props.page} setPage={this.setPage}/>
                         <div className='col-md-3'>
                             <div className='sidebar'>
                                 <p>Popular Tags</p>

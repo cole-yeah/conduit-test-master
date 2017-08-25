@@ -1,8 +1,10 @@
 import React from 'react'
 
 import ArticlePreview from './ArticlePreview'
+import ListPagination from './ListPagination'
 
 const ArticleList = props => {
+    console.log(props)
     return (
         <div>
             {
@@ -10,6 +12,7 @@ const ArticleList = props => {
                     return <ArticlePreview key={i} article={article}/>
                 }):null
             }
+            <ListPagination page={props.page} count={props.articlesCount} setPage={props.setPage} />
         </div>
     )
 }
