@@ -1,8 +1,26 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
+import action from '../actions/action'
+import { LOGIN_EMAIL, LOGIN_PASSWORD, LOGIN_SUCCESS, LOGIN_FAIL } from '../constants/actionTypes'
+
+const mapStateToProps = state => ({
+    ...state.login
+})
+
+const mapDispatchToProps = dispatch => ({
+    onChangeLoginEmail: e => 
+        dispatch({type: LOGIN_EMAIL, value: e.target.value}),
+    onChangeLoginPassword: e =>
+        dispatch({type: LOGIN_PASSWORD, value: e.target.value}),
+    login: payload =>
+        dispatch({type: [LOGIN_SUCCESS, LOGIN_FAIL], payload})
+})
 
 class Login extends Component {
     render() {
+        const {email, password, onChangeLoginEmail, onChangeLoginPassword, login} = this.props
         return (
             <div className='container page'>
                 <div className='row'>
@@ -14,14 +32,14 @@ class Login extends Component {
                         <form>
                             <fieldset>
                                 <fieldset className='form-group'>
-                                    <input type='email' className='form-control from-control-lg' placeholder='Email' />
+                                    <input onChange={onChangeLoginEmail} value={email} type='email' className='form-control from-control-lg' placeholder='Email' />
                                 </fieldset>
                                 <fieldset className='form-group'>
-                                    <input type='password' className='form-control from-control-lg' placeholder='Password' />
+                                    <input onChange={onChangeLoginPassword} value={password} type='password' className='form-control from-control-lg' placeholder='Password' />
                                 </fieldset>
-                                <button className='btn btn-lg btn-primary pull-xs-right' type='submit'>Sign In</button>
                             </fieldset>
                         </form>
+                        <button onClick={() => login(action.Profile.login(email, password))} className='btn btn-lg btn-primary pull-xs-right' type='submit'>Sign In</button>
                     </div>
                 </div>
             </div>
@@ -29,4 +47,4 @@ class Login extends Component {
     }
 }
 
-export default Login
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

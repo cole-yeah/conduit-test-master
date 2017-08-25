@@ -8,8 +8,6 @@ export default function register(state = {username: '', email: '', password: ''}
             return {...state, email: action.value}
         case types.CHANGE_PASSWORD:
             return {...state, password: action.value}
-        case types.REGISTER_FAIL:
-            return state
         default:
             return state
     }

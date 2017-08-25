@@ -54,6 +54,8 @@ const Profile = {
         request.get(`profiles/${username}`),
     register: (username, email, password) =>
         request.post('/users', { user: { username, email, password } }),
+    login: (email, password) => 
+        request.post(`/users/login`, { user: { email, password }})
 }
 
 export default {

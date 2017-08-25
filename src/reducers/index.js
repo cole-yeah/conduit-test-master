@@ -4,13 +4,15 @@ import home from './home'
 import profile from './profile'
 import tags from './tags'
 import register from './register'
+import login from './login'
 
 const rootReducer = combineReducers({
     article,
     home,
     profile,
     tags,
-    register
+    register,
+    login
 })
 
 export default rootReducer
