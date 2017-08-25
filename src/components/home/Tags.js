@@ -1,9 +1,18 @@
 import React from 'react'
 
-const Tags = () => {
+const Tags = props => {
+    if(!props.tags) {
+        return null
+    }
     return (
-        <div>
-            tags
+        <div className='tag-list'>
+            {
+                props.tags.tags.map((tag, i) => {
+                    return (
+                        <a className='tag-default tag-pill'>{tag}</a>
+                    )
+                })
+            }
         </div>
     )
 }

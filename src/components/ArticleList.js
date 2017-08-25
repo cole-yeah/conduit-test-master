@@ -4,7 +4,6 @@ import ArticlePreview from './ArticlePreview'
 import ListPagination from './ListPagination'
 
 const ArticleList = props => {
-    console.log(props)
     return (
         <div>
             {

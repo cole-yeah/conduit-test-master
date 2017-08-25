@@ -31,6 +31,11 @@ const Articles = {
     
 }
 
+const Tags = {
+    get: () => 
+        request.get(`tags`),
+}
+
 const Comments = {
     get: id => 
         request.get(`articles/${id}/comments`),
@@ -44,5 +49,6 @@ const Profile = {
 export default {
     Articles,
     Comments,
-    Profile
+    Profile,
+    Tags
 }
