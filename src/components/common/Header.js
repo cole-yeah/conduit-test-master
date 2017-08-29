@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
+const mapStateToProps = state => ({
+    ...state.login
+})
+
+const mapDispatchToProps = dispatch => ({
+
+})
 
 const LoginView = () => {
     return (
@@ -11,17 +20,31 @@ const LoginView = () => {
     )
 } 
 
+const UserView = props => {
+    return (
+        <ul className='nav navbar-nav pull-xs-right'>
+            <li className='nav-item'><Link className='nav-link' to='/'>Home</Link></li>
+            <li className='nav-item'><Link className='nav-link' to='/'>Home</Link></li>
+            <li className='nav-item'><Link className='nav-link' to='/'>Home</Link></li>
+            <li className='nav-item'><Link className='nav-link' to='/'>{props.user.username}</Link></li>
+        </ul>
+    )
+}
+
 class Header extends Component {
     render() {
+        const { hasLogin, user } = this.props
         return (
             <nav className='navbar navbar-light'>
                 <div className='container'>
                     <Link to='/' className='navbar-brand'>Conduit</Link>
-                    <LoginView/>
+                    {
+                        hasLogin?<UserView user={user}/>:<LoginView/>
+                    }
                 </div>
             </nav>
         )
     }
 }
 
-export default Header
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
