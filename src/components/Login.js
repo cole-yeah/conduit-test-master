@@ -19,10 +19,15 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class Login extends Component {
+    constructor(props) {
+        super(props)
+        // console.log('LoginPage--', props)
+    }
     render() {
         const {email, password, onChangeLoginEmail, onChangeLoginPassword, login} = this.props
         return (
             <div className='container page'>
+                {console.log('LoginPage--', this.props)}
                 <div className='row'>
                     <div className='col-md-6 offset-md-3 col-xs-12'>
                         <h1 className='text-xs-center'>Sign In</h1>

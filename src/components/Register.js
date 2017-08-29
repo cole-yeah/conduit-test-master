@@ -21,10 +21,14 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class Register extends Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
         const {username, password, email, onChangeEmail, onChangeUsername, onChangePassword, register} = this.props
         return (
             <div className='container page'>
+                {console.log('Register---', this.props)}
                 <div className='row'>
                     <div className='col-md-6 offset-md-3 col-xs-12'>
                         <h1 className='text-xs-center'>Sign Up</h1>
