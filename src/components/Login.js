@@ -19,15 +19,13 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class Login extends Component {
-    constructor(props) {
-        super(props)
-        // console.log('LoginPage--', props)
-    }
     render() {
-        const {email, password, onChangeLoginEmail, onChangeLoginPassword, login} = this.props
+        const {email, password, onChangeLoginEmail, onChangeLoginPassword, login, hasLogin, history} = this.props
+        if(hasLogin) {
+            history.replace('/')
+        }
         return (
             <div className='container page'>
-                {console.log('LoginPage--', this.props)}
                 <div className='row'>
                     <div className='col-md-6 offset-md-3 col-xs-12'>
                         <h1 className='text-xs-center'>Sign In</h1>
@@ -44,7 +42,7 @@ class Login extends Component {
                                 </fieldset>
                             </fieldset>
                         </form>
-                        <button onClick={() => login(action.Profile.login(email, password))} className='btn btn-lg btn-primary pull-xs-right' type='submit'>Sign In</button>
+                        <button onClick={() =>login(action.Profile.login(email, password))} className='btn btn-lg btn-primary pull-xs-right' type='submit'>Sign In</button>
                     </div>
                 </div>
             </div>
