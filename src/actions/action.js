@@ -35,7 +35,9 @@ const Articles = {
     byAuthor: (username, page) => 
         request.get(`articles?author=${username}&${limit(5, page)}`),
     byTag: (tag, page) =>
-        request.get(`articles?tag=${tag}&${limit(10, page)}`)
+        request.get(`articles?tag=${tag}&${limit(10, page)}`),
+    create: (article) => 
+        request.post('articles', {article})
     
 }
 

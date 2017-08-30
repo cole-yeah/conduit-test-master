@@ -22,3 +22,6 @@ export const SETTINGS_FAIL = 'SETTINGS_FAIL'
 
 export const LOADING_START = 'LOADING_START'
 export const LOADING_END = 'LOADING_END'
+
+export const EDITOR_INPUT = 'EDITOR_INPUT'
+export const SUBMIT_ARTICLE = 'SUBMIT_ARTICLE'

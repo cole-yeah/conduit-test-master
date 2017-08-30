@@ -24,7 +24,7 @@ const UserView = props => {
     return (
         <ul className='nav navbar-nav pull-xs-right'>
             <li className='nav-item'><Link className='nav-link' to='/'>Home</Link></li>
-            <li className='nav-item'><Link className='nav-link' to='/'><i className='ion-compose'/>New Post</Link></li>
+            <li className='nav-item'><Link className='nav-link' to='/editor'><i className='ion-compose'/>New Post</Link></li>
             <li className='nav-item'><Link className='nav-link' to='/settings'><i className='ion-gear-a'/>Settings</Link></li>
             <li className='nav-item'><Link className='nav-link' to={`@${props.user.user.username}`}>{props.user.user.username}</Link></li>
         </ul>

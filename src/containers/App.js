@@ -9,6 +9,7 @@ import Home from '../components/home/Home'
 import Profile from '../components/Profile'
 import Article from '../components/article'
 import Settings from '../components/Settings'
+import Editor from '../components/Editor'
 
 import action from '../actions/action'
 import {LOGIN_SUCCESS, LOGIN_FAIL} from '../constants/actionTypes'
@@ -41,6 +42,7 @@ class BasicExample extends Component {
                         <Route path="/login" component={Login}/>
                         <Route path="/register" component={Register}/>
                         <Route path='/settings' component={Settings}/>
+                        <Route path='/editor' component={Editor}/>
                     </div>
                     <Route path='/article/:id' component={Article} />
                     <Route path='/@:username' component={Profile}/>
