@@ -1,4 +1,5 @@
 import agent from './actions/action'
+import { LOADING_START, LOADING_END } from './constants/actionTypes'
 
 let localStorage = window.localStorage
 
@@ -7,6 +8,7 @@ const promiseMiddleware = store => next => action => {
     if(isPromise(action)) {
         action.payload.then(
             res => {
+                store.dispatch({type: LOADING_START, subType: action.type})
                 console.log('result', res)
                 action.payload = res
                 if(typeof(action.type) === 'object' && action.type.length && action.type.length>1) {
@@ -15,8 +17,10 @@ const promiseMiddleware = store => next => action => {
                 } else {
                     store.dispatch(action)
                 }
+                store.dispatch({type: LOADING_END, subType: action.type})
             },
             err => {
+                store.dispatch({type: LOADING_START, subType: action.type})
                 console.log('err', err)
                 action.payload = err.response.body
                 alert(err)
@@ -26,6 +30,7 @@ const promiseMiddleware = store => next => action => {
                 }else {
                     store.dispatch({...action})
                 }
+                store.dispatch({type: LOADING_END, subType: action.type})
             }
         )
         return 
