@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { SETTINGS_LOGOUT, SETTINGS_INPUT } from '../constants/actionTypes'
+import action from '../actions/action'
+import { SETTINGS_LOGOUT, SETTINGS_INPUT, SETTINGS_SUCCESS, SETTINGS_FAIL } from '../constants/actionTypes'
 
 const mapStateToProps = state => ({
     ...state.login,
@@ -12,7 +13,9 @@ const mapDispatchToProps = dispatch => ({
     logout: () => 
         dispatch({type: SETTINGS_LOGOUT}),
     settingsOnChange: (key, value) => 
-        dispatch({type: SETTINGS_INPUT, key, value})
+        dispatch({type: SETTINGS_INPUT, key, value}),
+    settingsAction: (payload) => 
+        dispatch({type: [SETTINGS_SUCCESS, SETTINGS_FAIL], payload})
 })
 
 const SettingsForm = props => {
@@ -37,15 +40,18 @@ const SettingsForm = props => {
                     </fieldset>
                 </fieldset>
             </form>
-            <button className='btn btn-lg btn-primary pull-xs-right'>Update Settings</button>
+            <button onClick={props._settings} className='btn btn-lg btn-primary pull-xs-right'>Update Settings</button>
         </div>
     )
 }
 
 class Settings extends Component {
     render() {
-        const { token, hasLogin, logout, history, settingsOnChange, settings } = this.props
+        const { token, hasLogin, logout, history, settingsOnChange, settings, settingsAction } = this.props
         if(!hasLogin) {
+            history.replace('/')
+        }
+        if(settings.reSetted) {
             history.replace('/')
         }
         return (
@@ -54,7 +60,7 @@ class Settings extends Component {
                     <div className='row'>
                         <div className='col-md-6 offset-md-3 col-xs-12'>
                             <h1 className='text-xs-center'>Your Settings</h1>
-                            <SettingsForm settingsOnChange={settingsOnChange} {...settings}/>
+                            <SettingsForm _settings={() => settingsAction(action.Profile.settings({...settings}))} settingsOnChange={settingsOnChange} {...settings}/>
                             <hr/>
                             <button onClick={() => logout()} className='btn btn-outline-danger'>Or click here to logout</button>
                         </div>

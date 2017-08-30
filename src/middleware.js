@@ -9,11 +9,10 @@ const promiseMiddleware = store => next => action => {
             res => {
                 console.log('result', res)
                 action.payload = res
-                store.dispatch(action)
-                if(action.type.length && action.type.length>1) {
+                if(typeof(action.type) === 'object' && action.type.length && action.type.length>1) {
                     const successType = action.type[0]
                     store.dispatch({...action, type: successType})
-                }else {
+                } else {
                     store.dispatch(action)
                 }
             },

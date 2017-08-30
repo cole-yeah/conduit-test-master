@@ -57,7 +57,9 @@ const Profile = {
     login: (email, password) => 
         request.post(`users/login`, { user: { email, password }}),
     info: () => 
-        request.get('user')
+        request.get('user'),
+    settings: (user) => 
+        request.put('user', {user}) 
 }
 
 export default {
