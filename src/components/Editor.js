@@ -6,7 +6,6 @@ import { EDITOR_INPUT, SUBMIT_ARTICLE } from '../constants/actionTypes'
 
 const mapStateToProps = state => ({
     editor: state.editor,
-    ...state.article
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -42,20 +41,17 @@ const InputView = props => {
 
 class Editor extends Component {
 
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.article && nextProps.article !== this.props.article) {
-            nextProps.history.replace(`article/${nextProps.article.slug}`)
-        }
-    }
-
     render() {
+        if(this.props.editor.hasChange) {
+            this.props.history.replace(`article/${this.props.editor.slug}`)
+        }
         const { editorInput, editor, submitArticle } = this.props
         return (
             <div className='editor-page'>
                 <div className='container page'>
                     <div className='row'>
                         <div className='col-md-10 offset-md-1 col-xs-12'>
-                            <InputView _submitArticle={() => submitArticle(action.Articles.create({...editor}))} _editorInput={editorInput} {...editor}/>
+                            <InputView _submitArticle={() => submitArticle(editor.slug?action.Articles.update({...editor}):action.Articles.create({...editor}))} _editorInput={editorInput} {...editor}/>
                         </div>
                     </div>
                 </div>

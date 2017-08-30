@@ -37,7 +37,9 @@ const Articles = {
     byTag: (tag, page) =>
         request.get(`articles?tag=${tag}&${limit(10, page)}`),
     create: (article) => 
-        request.post('articles', {article})
+        request.post('articles', {article}),
+    update: (article) =>
+        request.put(`articles/${article.slug}`, {article: {...article, slug: undefined}})
     
 }
 

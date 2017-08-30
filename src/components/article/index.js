@@ -9,6 +9,8 @@ import action from '../../actions/action'
 
 const mapStateToProps = state => ({
     article: state.article,
+    user: state.login.user,
+    hasLogin: state.login.hasLogin
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -39,6 +41,21 @@ const Author = props => {
     }
 }
 
+const ArticleActions = props => {
+    return (
+        <span>
+            <Link to={`/editor`} className='btn btn-outline-secondary btn-sm'>
+                <i className='ion-edit' />
+                Edit Article
+            </Link>
+            <button className='btn btn-outline-danger btn-sm'>
+                <i className='ion-trash-a' />
+                Delete Article
+            </button>
+        </span>
+    )
+}
+
 class Article extends Component {
     componentWillMount() {
         this.props.loadArticle(Promise.all([
@@ -58,6 +75,7 @@ class Article extends Component {
                     <div className='container'>
                         <h1>{article.article.title}</h1>
                         <Author article={article}/>
+                        { (this.props.user&&this.props.user.user.username === article.article.author.username)?<ArticleActions article={article}/> : null }
                     </div>
                 </div>
                 <div className='container page'>
@@ -76,7 +94,7 @@ class Article extends Component {
                         </div>
                     </div>
                     <hr/>
-                    <CommentList comments={article.comments}/>
+                    <CommentList hasLogin={this.props.hasLogin} comments={article.comments}/>
                 </div>
             </div>
         )

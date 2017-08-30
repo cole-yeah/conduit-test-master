@@ -6,7 +6,7 @@ import CommentInput from './CommentInput'
 const CommentList = props => {
     return (
         <div>
-            <CommentInput/>
+            { props.hasLogin?null:<CommentInput/> }
             {
                 props.comments.length?props.comments.map((comment, i) => {
                     return <CommentView key={i} comment={comment}/>
