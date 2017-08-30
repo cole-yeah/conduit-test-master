@@ -1,3 +1,7 @@
+import agent from './actions/action'
+
+let localStorage = window.localStorage
+
 const promiseMiddleware = store => next => action => {
     console.log('action....', action)
     if(isPromise(action)) {
@@ -34,4 +38,14 @@ const isPromise = action => {
     return action.payload && typeof action.payload.then === 'function'
 }
 
-export { promiseMiddleware }
+const localStorageMiddleware = store => next => action => {
+    if(action.type === 'LOGIN_SUCCESS') {
+        console.log('设置token！！！')
+        localStorage.token = action.payload.user.token
+        agent.setToken(action.payload.user.token)
+        console.log('设置token成功！！！')
+    }
+    next(action)
+}
+
+export { promiseMiddleware, localStorageMiddleware }

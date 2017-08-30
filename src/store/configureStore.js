@@ -1,14 +1,14 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 
-import { promiseMiddleware } from '../middleware'
+import { promiseMiddleware, localStorageMiddleware } from '../middleware'
 
 import reducer from '../reducers/index'
 
 const getMiddleware = () => {
   if (process.env.NODE_ENV === 'production') {
-    return applyMiddleware(promiseMiddleware);
+    return applyMiddleware(promiseMiddleware, localStorageMiddleware);
   } else {
-    return applyMiddleware(promiseMiddleware)
+    return applyMiddleware(promiseMiddleware, localStorageMiddleware)
   }
 }
 

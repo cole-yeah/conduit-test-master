@@ -55,12 +55,15 @@ const Profile = {
     register: (username, email, password) =>
         request.post('users', { user: { username, email, password } }),
     login: (email, password) => 
-        request.post(`users/login`, { user: { email, password }})
+        request.post(`users/login`, { user: { email, password }}),
+    info: () => 
+        request.get('user')
 }
 
 export default {
     Articles,
     Comments,
     Profile,
-    Tags
+    Tags,
+    setToken: (accessToken) => {token = accessToken}
 }
