@@ -33,7 +33,7 @@ class Home extends Component {
 
     componentWillMount() {
         self=this
-        this.props.onLoad(action.Articles.all(0), 1),
+        this.props.onLoad(action.Articles.all(0), 1)
         this.props.loadTags(action.Tags.get())
     }
 

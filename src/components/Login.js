@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
 
 class Login extends Component {
     render() {
-        const {email, password, onChangeLoginEmail, onChangeLoginPassword, login, hasLogin, history, user} = this.props
+        const {email, password, onChangeLoginEmail, onChangeLoginPassword, login, hasLogin, history} = this.props
         if(hasLogin) {
             history.replace('/')
         }

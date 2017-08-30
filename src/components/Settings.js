@@ -47,7 +47,7 @@ const SettingsForm = props => {
 
 class Settings extends Component {
     render() {
-        const { token, hasLogin, logout, history, settingsOnChange, settings, settingsAction } = this.props
+        const { hasLogin, logout, history, settingsOnChange, settings, settingsAction } = this.props
         if(!hasLogin) {
             history.replace('/')
         }

@@ -75,7 +75,7 @@ class Article extends Component {
                     <div className='container'>
                         <h1>{article.article.title}</h1>
                         <Author article={article}/>
-                        { (this.props.user&&this.props.user.user.username === article.article.author.username)?<ArticleActions article={article}/> : null }
+                        { (this.props.user.user&&this.props.user.user.username === article.article.author.username)?<ArticleActions article={article}/> : null }
                     </div>
                 </div>
                 <div className='container page'>
