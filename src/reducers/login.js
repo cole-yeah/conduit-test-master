@@ -10,6 +10,8 @@ export default function login(state = { email: '243461254@qq.com', password: 'yu
             return {...state, user: action.payload, hasLogin: true}
         case types.LOGIN_FAIL:
             return {...state, hasLogin: false}
+        case types.SETTINGS_LOGOUT:
+            return {...state, hasLogin: false}
         default:
             return state
     }

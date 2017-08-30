@@ -5,6 +5,7 @@ import profile from './profile'
 import tags from './tags'
 import register from './register'
 import login from './login'
+import settings from './settings'
 
 const rootReducer = combineReducers({
     article,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     profile,
     tags,
     register,
-    login
+    login,
+    settings
 })
 
 export default rootReducer

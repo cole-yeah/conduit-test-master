@@ -44,6 +44,11 @@ const localStorageMiddleware = store => next => action => {
         localStorage.token = action.payload.user.token
         agent.setToken(action.payload.user.token)
         console.log('设置token成功！！！')
+    }else if(action.type === 'SETTINGS_LOGOUT') {
+        console.log('清除token!!!')
+        localStorage.token = ''
+        agent.setToken(null)
+        console.log('清除token成功!!!')
     }
     next(action)
 }
