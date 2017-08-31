@@ -6,7 +6,7 @@ const CommentView = props => {
     return (
         <div className='card'>
             <div className='card-block'>
-                <p>content</p>
+                <p>{props.comment.body}</p>
             </div>
             <div className='card-footer'>
                 <Link className='comment-author' to={`/@${props.comment.author.username}`}>

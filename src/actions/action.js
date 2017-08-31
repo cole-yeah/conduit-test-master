@@ -1,28 +1,28 @@
-import superagentPromise from 'superagent-promise'
-import _superagent from 'superagent'
-
-const superagent = superagentPromise(_superagent, global.Promise)
-
 const API_ROOT = 'https://conduit.productionready.io/api/'
 
-const responseBody = res => res.body
-
 let token = null
-const tokenPlugin = req => {
-    if(token) {
-        req.set('authorization', `Token ${token}`)
+
+const tokenPlugin = token => {
+    return {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'authorization': token?`Token ${token}`:null
     }
+}
+
+const callBack = respone => {
+    return respone.json().then(json => json)
 }
 
 const request = {
     get: url => 
-        superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody),
+        fetch(`${API_ROOT}${url}`, {method: 'GET', headers: tokenPlugin(token)}).then(response => callBack(response)),
     post: (url, body) =>
-        superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
+        fetch(`${API_ROOT}${url}`, {method: 'POST', body: JSON.stringify(body), headers: tokenPlugin(token)}).then(response => callBack(response)),
     put: (url, body) => 
-        superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
+        fetch(`${API_ROOT}${url}`, {method: 'PUT', body: JSON.stringify(body), headers: tokenPlugin(token)}).then(response => callBack(response)),
     del: url => 
-        superagent.del(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody)
+        fetch(`${API_ROOT}${url}`, {method: 'DEL', headers: tokenPlugin(token)}).then(response => callBack(response))
 }
 
 const limit = (count, p) => `limit=${count}&offset=${p?p*count:0}`
