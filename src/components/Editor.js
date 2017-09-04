@@ -41,10 +41,13 @@ const InputView = props => {
 
 class Editor extends Component {
 
-    render() {
-        if(this.props.editor.hasChange) {
-            this.props.history.replace(`article/${this.props.editor.slug}`)
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.editor.hasChange) {
+            nextProps.history.replace(`article/${nextProps.editor.slug}`)
         }
+    }
+
+    render() {
         const { editorInput, editor, submitArticle } = this.props
         return (
             <div className='editor-page'>
