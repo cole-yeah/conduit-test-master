@@ -63,7 +63,7 @@ const Profile = {
     info: () => 
         request.get('user'),
     settings: (user) => 
-        request.put('user', {user}) 
+        request.put('user', user) 
 }
 
 export default {

@@ -46,14 +46,20 @@ const SettingsForm = props => {
 }
 
 class Settings extends Component {
+
+    componentWillReceiveProps(nextProps) {
+        if(!nextProps.hasLogin) {
+            nextProps.history.replace('/')
+            return 
+        }else if(nextProps.settings.reSetted) {
+            nextProps.history.replace('/')
+            return 
+        }
+    }
+
     render() {
         const { hasLogin, logout, history, settingsOnChange, settings, settingsAction } = this.props
-        if(!hasLogin) {
-            history.replace('/')
-        }
-        if(settings.reSetted) {
-            history.replace('/')
-        }
+        console.log('settings', this.props)
         return (
             <div className='settings-page'>
                 <div className='container page'>
